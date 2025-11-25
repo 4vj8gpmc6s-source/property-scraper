@@ -2,7 +2,7 @@ name: Daily Scraper
 
 on:
   schedule:
-    - cron: '0 5 * * *'   # uruchomienie codziennie o 06:00 CET zimą (UTC 05:00). Dopasuj gdy trzeba.
+    - cron: '0 5 * * *'   # codziennie (dostosuj jeśli trzeba)
   workflow_dispatch:
 
 jobs:
@@ -19,12 +19,17 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install dependencies and Playwright browsers
+      - name: Install Python deps
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install playwright
-          python -m playwright install --with-deps
+
+      - name: Setup Playwright (install browsers + deps)
+        uses: microsoft/playwright-github-action@v1
+        with:
+          # opcjonalnie: przeglądarki: 'chromium,firefox,webkit'
+          # domyślnie instaluje wszystkie trzy
+          run: 'install'
 
       - name: Run scraper
         env:
