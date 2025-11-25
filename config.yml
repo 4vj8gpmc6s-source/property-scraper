@@ -1,0 +1,74 @@
+output_folder: data
+db_path: data/properties.db
+telegram:
+  enabled: false        # ustawisz na true, gdy dodamy sekrety
+  bot_token: "${TELEGRAM_TOKEN}"
+  chat_id: "${TELEGRAM_CHAT_ID}"
+scrape:
+  concurrency: 1
+  headless: true
+  timeout: 70000
+sites:
+  - name: idealista_baleares
+    url: "https://www.idealista.com/venta-viviendas/balears-illes/"
+    list_selector: ".item"
+    title_selector: ".item-link"
+    price_selector: ".item-price"
+    details_selector: ".item-detail-char"
+    url_selector: "a.item-link"
+    pagination: true
+
+  - name: idealista_mallorca
+    url: "https://www.idealista.com/venta-viviendas/balears-illes/mallorca/"
+    list_selector: ".item"
+    title_selector: ".item-link"
+    price_selector: ".item-price"
+    details_selector: ".item-detail-char"
+    url_selector: "a.item-link"
+    pagination: true
+
+  - name: idealista_ibiza
+    url: "https://www.idealista.com/venta-viviendas/ibiza-eivissa/"
+    list_selector: ".item"
+    title_selector: ".item-link"
+    price_selector: ".item-price"
+    details_selector: ".item-detail-char"
+    url_selector: "a.item-link"
+    pagination: true
+
+  - name: idealista_menorca
+    url: "https://www.idealista.com/venta-viviendas/menorca/"
+    list_selector: ".item"
+    title_selector: ".item-link"
+    price_selector: ".item-price"
+    details_selector: ".item-detail-char"
+    url_selector: "a.item-link"
+    pagination: true
+
+  - name: fotocasa_mallorca
+    url: "https://www.fotocasa.es/es/comprar/viviendas/illes-balears-province/mallorca/l"
+    list_selector: ".re-Card, .re-List-item"
+    title_selector: ".re-Card-title, .re-Card-address"
+    price_selector: ".re-Card-price"
+    details_selector: ".re-Card-features"
+    url_selector: "a"
+    pagination: true
+
+  - name: habitaclia_baleares
+    url: "https://www.habitaclia.com/ventas/illes-balears.htm"
+    list_selector: ".ad, .listing"
+    title_selector: ".title"
+    price_selector: ".price"
+    details_selector: ".characteristics"
+    url_selector: "a"
+    pagination: true
+
+proxies:
+  enabled: false
+  list: []
+user_agents:
+  - "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.6 Safari/605.1.15"
+throttle:
+  min_sleep_ms: 800
+  max_sleep_ms: 2000
